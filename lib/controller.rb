@@ -8,7 +8,7 @@ class Controller
   attr_reader :pet 
 
   def initialize
-    @pet = Cat.new('vasya', 'user')
+    @pet = Dog.new('vasya', 'user')
     p self
     p @pet
   end
@@ -35,7 +35,7 @@ class Controller
     if @pet.is_dead? 
       puts "i`m dying. i loved u. sorry. "
     end   
-    @pet.response = []
+    @pet.response = [] unless request_path == '/'
     command = request_path.delete('/')
     case command
     when 'feed'

@@ -3,6 +3,7 @@ class Pet
   
     def initialize(name,user_login)
       @user_login = user_login
+      @avatar = 0
       @name = name
       @feed_level = 3
       @water_level = 3
