@@ -14,7 +14,7 @@ class Pet
       @emoji = '&#128525;'
       save
     end
-  
+
     def feed
       if @feed_level < 3
         @feed_level = 3
@@ -82,55 +82,12 @@ class Pet
       save
     end
   
-    def kill(user_login)
-      return puts("not_allowed".red) unless is_user_superadmin?(user_login)
-      puts 'killed'
-      @lifes = 0
-      save
-    end
-  
-    def change_name(user_login)
-      return puts("not_allowed".red) unless is_user_admin?(user_login)
-      puts "What is new name?"
-      new_name = gets.strip.downcase
-      self.name = new_name
-      save
-    end
-  
-    def change_user_login(user_login)
-      return puts("not_allowed".red) unless is_user_superadmin?(user_login)
-      puts "What is new login?"
-      new_login = gets.strip.downcase
-      self.user_login = new_login
-      save
-    end
-  
-    def change_life_states(user_login)
-      return puts("not_allowed".red) unless is_user_superadmin?(user_login)
-      puts "What is new feed level? Enter a number from 1 to 3: "
-      @feed_level = gets.strip.to_i
-      puts "What is new water  level? Enter a number from 1 to 3:"
-      @water_level = gets.strip.to_i
-      puts "What is new energy level? Enter a number from 1 to 3:"
-      @energy_level = gets.strip.downcase
-      update_states
-      save
-    end
-  
     def save
       name = self.user_login
-      yaml = YAML.dump(self) 
-      File.open("./database/#{name}.yml", 'w') { |file| file.puts(yaml) } 
+      #yaml = YAML.dump(self) 
+      #File.open("./database/#{name}.yml", 'w') { |file| file.puts(yaml) } 
     end
-  
-    def is_user_admin?(user_login)
-      user_login == 'admin' || user_login == 'superadmin'
-    end
-  
-    def is_user_superadmin?(user_login)
-      user_login == 'superadmin'
-    end
-  
+
     private
   
     def hungry?
@@ -173,7 +130,7 @@ class Pet
       @response << 'I need to sleep!' if sleepy?
       maybe_lose_life  
       update_states
-      @response.each{ |r| puts Array(r).join.red}
+      @response.each{ |r| puts Array(r).join}
     end   
   end
   
