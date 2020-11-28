@@ -1,3 +1,5 @@
+require "yaml"
+
 class Pet 
     attr_accessor :name, :response, :states, :lifes, :emoji, :user_login
   
@@ -85,8 +87,8 @@ class Pet
   
     def save
       name = self.user_login
-      #yaml = YAML.dump(self) 
-      #File.open("./database/#{name}.yml", 'w') { |file| file.puts(yaml) } 
+      yaml = YAML.dump(self) 
+      File.open("./database/#{name}.yml", 'w') { |file| file.puts(yaml) } 
     end
 
     private

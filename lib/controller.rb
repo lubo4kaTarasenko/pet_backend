@@ -13,22 +13,27 @@ class Controller
     p @pet
   end
 
+  
+
   def response
     @pet.name
   end
 
   def call(env)
-    p env["PATH_INFO"]
+    p env
+    puts env['rack.input'].read
     execute_command(env["PATH_INFO"])
-    [200, {}, [render]]
+    [200, {}, [render_auth]]
   end
 
-  def render
+  def render_pet
     path = File.expand_path("../../app/views/layout.html.erb", __FILE__)
-    p self
-    html = ERB.new(File.read(path)).result(binding)
-    p html
-    html
+    ERB.new(File.read(path)).result(binding)
+  end
+
+  def render_auth
+    path = File.expand_path("../../app/views/auth.html.erb", __FILE__)
+    ERB.new(File.read(path)).result(binding)
   end
 
   def execute_command(request_path)

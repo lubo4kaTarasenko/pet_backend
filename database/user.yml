@@ -1,0 +1,17 @@
+--- !ruby/object:Dog
+user_login: user
+avatar: 0
+name: vasya
+feed_level: 0
+water_level: 3
+energy_level: 3
+lifes: 2
+need_toilet: false
+states:
+- feed_level = 0
+- water_level = 3
+- energy_level = 3
+response: []
+emoji: "&#128561;"
+amoji: "&#128524;"
+feedlevel: 3
