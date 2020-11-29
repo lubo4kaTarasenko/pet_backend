@@ -1,7 +1,7 @@
 --- !ruby/object:Dog
-user_login: v
+user_login: abraham
 avatar: 0
-name: muhtar
+name: piccles
 feed_level: 2
 water_level: 2
 energy_level: 2
@@ -12,6 +12,7 @@ states:
 - water_level = 2
 - energy_level = 2
 response:
-- - i wanna you`r hugs, dude
-  - your dog has come to you and wants you hug and pet it
-emoji: "&#128520;"
+- you`re throwing the ball and your dog is bringing it
+- whoof whoof it is very funny
+- you`r playing with your pet
+emoji: "&#128516;"

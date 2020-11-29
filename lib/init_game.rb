@@ -13,10 +13,7 @@ class InitGame
   def init_user(env)
     form = env['rack.input'].read 
     user_params = Rack::Utils.parse_nested_query(form)
-    p form
-    p user_params
     @user = Session.new(user_params['login'], user_params['password'] ).log_in  
-    # init_user unless @user
   end
 
   def render_auth

@@ -17,7 +17,7 @@ class PetController
     
     def execute_command(request_path)
         if @pet.is_dead? 
-            puts "i`m dying. i loved u. sorry. "
+            @pet.response = ['I have died']
         end   
         @pet.response = [] unless request_path == '/'
         command = request_path.delete('/')

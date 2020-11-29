@@ -20,8 +20,6 @@ class Controller
       return  [200, {}, [response]]
     end
 
-
-
     if @user.user_pet
       pet_controller = PetController.new(@user.user_pet)
       pet_controller.execute_command(env["PATH_INFO"])

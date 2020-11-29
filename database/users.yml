@@ -1,7 +1,3 @@
 ---
-- :login: 
-  :password: 
-- :login: a
+- :login: abraham
   :password: '1'
-- :login: v
-  :password: '2'
