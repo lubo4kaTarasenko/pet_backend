@@ -10,12 +10,7 @@ class Session
   def log_in
     user = User.new(@login, @password)
     if user.exists?(user.load_users)
-        if user.correct?(user.load_users)
-            p "your pet here"
-        else 
-            p 'incorrect user'
-            return nil
-        end
+      return nil unless user.correct?(user.load_users)
     else
         user.save
     end

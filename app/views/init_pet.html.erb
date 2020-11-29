@@ -10,14 +10,18 @@
             <div class='col-sm-2'></div>
             <div class='col-sm-8' style='text-align:center'>  
                 <br>
-                <form style='max-width: 400px; margin:auto' action='/auth' method='post'>
+                <form style='max-width: 400px; margin:auto' action='/init_pet' method='post'>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Login</label>
-                        <input name='login' type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Pet`s name: </label>
+                        <input name='name' type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input  name='password' type="password" class="form-control" id="exampleInputPassword1">
+                        <label for="cat">Cat </label>
+                        <input type="radio" name="type" value="cat" id='cat'>
+                    </div>
+                    <div class="form-group">
+                        <label for="dog">Dog </label>
+                        <input type="radio" name="type" value="dog" id='dog'> 
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

@@ -21,19 +21,34 @@ class User
     user = {
       login: @login,
       password: @password,
-      role: self.class.to_s
     }
     users_array = load_users
 
     if !exists?(users_array)
       users_array << user
-      File.open('./database/users.yml', 'w') { |file| file.puts(users_array.to_yaml) }
+      File.open("#{self.class.root}/../database/users.yml", 'w') { |file| file.puts(users_array.to_yaml) }
     end  
   end
 
   def load_users
-    YAML.load(File.read('./database/users.yml')) || []
+    YAML.load(File.read("#{self.class.root}/../database/users.yml")) || []
   rescue
     []
+  end
+
+  def has_pet?
+    File.exists?("#{self.class.root}/../database/#{self.login}.yml")
+  end
+
+  def load_pet
+    YAML.load(File.read("#{self.class.root}/../database/#{self.login}.yml"))
+  end
+
+  def user_pet
+    has_pet? ? load_pet : nil
+  end
+
+  def self.root
+    File.expand_path '..', __FILE__
   end
 end

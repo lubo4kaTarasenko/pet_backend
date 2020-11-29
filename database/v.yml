@@ -1,0 +1,17 @@
+--- !ruby/object:Dog
+user_login: v
+avatar: 0
+name: muhtar
+feed_level: 2
+water_level: 2
+energy_level: 2
+lifes: 3
+need_toilet: false
+states:
+- feed_level = 2
+- water_level = 2
+- energy_level = 2
+response:
+- - i wanna you`r hugs, dude
+  - your dog has come to you and wants you hug and pet it
+emoji: "&#128520;"

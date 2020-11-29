@@ -1,43 +1,31 @@
-require_relative 'pet'
-require_relative 'dog'
-require_relative 'cat'
-require 'rack'
-require "erb"
-
 class InitGame
-    def init_pet
-        puts 'Please, enter you`r pet`s name? '.yellow
-        name = gets.chomp
-        puts 'Choose cat or dog, please'.yellow
-        type = gets.chomp.downcase
-        if type == 'dog'
-          pet = Dog.new(name, @user.login)
-        elsif type == 'cat'
-          pet = Cat.new(name, @user.login)
-        else
-          puts 'Don`t know this pet'
-        end
-        puts "Hi i'm your #{pet.class}. My name is #{pet.name}. And I love u :*".yellow
-        pet
-      end
-    
-      def init_user 
-        login = gets.chomp.downcase
-        password = gets.chomp.downcase
-        @user = Session.new(login, password).log_in  
-        init_user unless @user
-      end
-    
-      def has_pet?
-        File.exists?("./database/#{@user.login}.yml")
-      end
-    
-      def load_pet
-        YAML.load(File.read("./database/#{@user.login}.yml"))
-      end
-    
-      def user_pet
-        has_pet? ? load_pet : init_pet
-      end
-    
+  def init_pet(env, user)
+    form = env['rack.input'].read 
+    pet_params = Rack::Utils.parse_nested_query(form)
+    if pet_params['type'] == 'dog'
+      pet = Dog.new(pet_params['name'], user.login)
+    else pet_params['type'] == 'cat'
+      pet = Cat.new(pet_params['name'], user.login)
+    end        
+    pet
+  end
+  
+  def init_user(env)
+    form = env['rack.input'].read 
+    user_params = Rack::Utils.parse_nested_query(form)
+    p form
+    p user_params
+    @user = Session.new(user_params['login'], user_params['password'] ).log_in  
+    # init_user unless @user
+  end
+
+  def render_auth
+    path = File.expand_path("../../app/views/auth.html.erb", __FILE__)
+    ERB.new(File.read(path)).result(binding)
+  end
+
+  def render_init_pet
+    path = File.expand_path("../../app/views/init_pet.html.erb", __FILE__)
+    ERB.new(File.read(path)).result(binding)
+  end      
 end

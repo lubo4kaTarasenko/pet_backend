@@ -3,65 +3,37 @@ require_relative 'dog'
 require_relative 'cat'
 require 'rack'
 require "erb"
+require_relative '../users/session'
+require_relative 'init_game'
+require_relative 'pet_controller'
 
 class Controller
   attr_reader :pet 
 
-  def initialize
-    @pet = Dog.new('vasya', 'user')
-    p self
-    p @pet
-  end
-
-  
-
-  def response
-    @pet.name
-  end
-
   def call(env)
-    p env
-    puts env['rack.input'].read
-    execute_command(env["PATH_INFO"])
-    [200, {}, [render_auth]]
-  end
-
-  def render_pet
-    path = File.expand_path("../../app/views/layout.html.erb", __FILE__)
-    ERB.new(File.read(path)).result(binding)
-  end
-
-  def render_auth
-    path = File.expand_path("../../app/views/auth.html.erb", __FILE__)
-    ERB.new(File.read(path)).result(binding)
-  end
-
-  def execute_command(request_path)
-    if @pet.is_dead? 
-      puts "i`m dying. i loved u. sorry. "
-    end   
-    @pet.response = [] unless request_path == '/'
-    command = request_path.delete('/')
-    case command
-    when 'feed'
-      @pet.feed
-    when 'water'
-      @pet.water
-    when 'toilet'
-      @pet.toilet
-    when 'sleep'
-      @pet.go_sleep
-    when 'play'
-      @pet.play
-    when 'status'
-      p @pet
-    when 'voice'
-      @pet.voice
-    when 'love'
-      @pet.love
-    when 'observe'
-      @pet.random
+    if env["PATH_INFO"].include?('auth')
+      @user = InitGame.new.init_user(env)
     end
 
-  end
+    unless @user
+      response = InitGame.new.render_auth 
+      return  [200, {}, [response]]
+    end
+
+
+
+    if @user.user_pet
+      pet_controller = PetController.new(@user.user_pet)
+      pet_controller.execute_command(env["PATH_INFO"])
+      return [200, {}, [pet_controller.render_pet]]
+    else
+      if env["PATH_INFO"].include?('init_pet')
+        pet = InitGame.new.init_pet(env, @user)   
+        pet_controller = PetController.new(@user.user_pet)
+        return [200, {}, [pet_controller.render_pet]]   
+      else
+        return [200, {}, [InitGame.new.render_init_pet]]
+      end
+    end  
+  end  
 end
