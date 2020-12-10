@@ -10,10 +10,8 @@ require_relative 'pet_controller'
 class Controller
   attr_reader :pet 
 
-  def call(env)
-    if env["PATH_INFO"].include?('auth')
-      @user = InitGame.new.init_user(env)
-    end
+  def call(env)   
+    @user = InitGame.new.init_user(env)  if env["PATH_INFO"].include?('auth')    
 
     unless @user
       response = InitGame.new.render_auth 

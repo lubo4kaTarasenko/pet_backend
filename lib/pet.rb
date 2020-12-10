@@ -116,7 +116,7 @@ class Pet
         @lifes -=1 
         @response << "I have just lost one of my lifes(( now I have #{@lifes} lifes"
         @emoji = '&#128561;'
-        @feedlevel = 3
+        @feed_level = 3
         @water_level = 3
         @energy_level = 3
       end
