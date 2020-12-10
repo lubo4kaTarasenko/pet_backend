@@ -1,7 +1,6 @@
-require_relative 'user.rb'
+require_relative 'user'
 
 class Session
-
   def initialize(login, password)
     @login = login
     @password = password
@@ -12,7 +11,7 @@ class Session
     if user.exists?(user.load_users)
       return nil unless user.correct?(user.load_users)
     else
-        user.save
+      user.save
     end
     user
   end
