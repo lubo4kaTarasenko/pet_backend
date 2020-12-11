@@ -9,4 +9,4 @@ run rackup config.ru in you'r terminal
 
 ![alt tag](http://i.piccy.info/i9/d0796e7e67a8b610f35dfb9c55964daf/1606643316/52599/1407518/Screenshot_from_2020_11_29_11_52_09.png)
 
-![alt tag](http://i.piccy.info/i9/d3793756f211b5ced61419cc2dddcf8d/1606643362/237849/1407518/Screenshot_from_2020_11_29_11_51_25.png)
+![alt tag](http://i.piccy.info/i9/73e2fd44a6217e9411639e1198d91b74/1607589630/254244/1407518/Screenshot_from_2020_12_10_10_38_09.png)
