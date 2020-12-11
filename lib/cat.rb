@@ -1,8 +1,8 @@
 class Cat < Pet
   RANDOM_PHRASES = [
-    ['What the noice? Perhapse mouse. meow. i cauth you', 'you`r cat is running very fast all over the house'],
+    ['What the noice? Perhapse mouse. meow. i cauth you', 'your cat is running very fast all over the house'],
     ['let it be sleep. murrrrr', 'your cat is falling sleep'],
-    ['ohhh what a nice new home sneakers', 'the cat sucked in you`r sneakers']
+    ['ohhh what a nice new home sneakers', 'the cat sucked in your sneakers']
   ].freeze
 
   def initialize(name, login)
