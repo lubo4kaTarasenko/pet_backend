@@ -1,7 +1,7 @@
 # pet_backend
 pet game with rack back-end
 
-run rackup config.ru in you'r terminal
+run rackup config.ru in your terminal
 
 ![alt tag](http://i.piccy.info/i9/a30021a48b91bc9f7574dc83aa045c72/1607683136/203441/1407518/Screenshot_from_2020_12_11_12_40_32.png)
 
